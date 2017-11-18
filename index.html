@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Errands 24/7</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/offcanvas.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Moment -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+
+<body>
+    <!-- Page Content Holder -->
+    <div class=header>
+        <nav class="navbar navbar-toggleable-md fixed-top">
+            <div class="errands-logo" data-margin-top="30px" data-marginbottom="30px" data-margin-left="0px" data-margin-right="0px">
+                <a class="logo" href="#">
+                <img src="asset/images/logo.png" width="160" height="43" alt="Errands 24/7">
+            </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="col-md-9">
+                    <ul class="navbar-nav">
+                        <li class="na9v-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="navbar-nav">
+                        <div id='current-user'></div>
+                        <div class="btn-group">
+                            <button id="sign-in" class="btn btn-info navbar-btn">Sign-in</button>
+                            <button id="sign-out" class="btn btn-info navbar-btn">Sign-out</button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="main" class="container">
+        <div class="col-xs-12 col-sm-12">
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-12 col-md-9" id="content">
+                    <div class="row">
+                        <img src="asset/images/google_map.png">
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 sidebar-offcanvas">
+                    <form>
+                        <div class="form-group">
+                            <label for="phone_number">Add Recipient:</label>
+                            <input type="phone_number" class="form-control" id="recipient">
+                        </div>
+                        <div class="form-group">
+                            <label for="msg">Add Message:</label>
+                            <input type="message" class="form-control" id="msg">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Add Location:</label>
+                            <input type="address" class="form-control" id="location">
+                        </div>
+                        <button type="submit" class="btn btn-default">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--jquery -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- javascript -->
+    <script type="text/javascript" src="asset/js/offcanvas.js"></script>
+</body>
+
+</html>

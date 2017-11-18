@@ -1,0 +1,129 @@
+html,
+body {
+    overflow-x: hidden;
+    /* Prevent scroll on narrow devices */
+    height: 100%;
+    font-family: 'montserrat';
+       overflow: scroll;
+}
+
+footer {
+    padding: 30px 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: auto;
+}
+
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+    border-radius: 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-bottom: 1px solid #eee;
+}
+
+.header {
+    padding-right: 0; 
+    padding-left: 0;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navbar-collapse {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.collapse {
+    display: none;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    padding: 1.5rem 1rem;
+}
+
+.navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.9rem;
+}
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+}
+
+.errands-logo {
+    display: block;
+    float: left;
+    max-width: 100%;
+    zoom: 1;
+}
+
+.errands-logo img {
+    width: auto;
+}
+
+#current-user {
+    display: inline-block;
+}
