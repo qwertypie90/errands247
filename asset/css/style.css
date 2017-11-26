@@ -58,6 +58,11 @@ img {
     height: auto;
 }
 
+#map {
+    height: 600px;
+    width: 70%;
+}
+
 
 .fixed-top {
     position: fixed;
