@@ -30,13 +30,13 @@ app.post('/send',function(req,res){
         subject : req.body.subject,
         text : req.body.text
     }
-    console.log(mailOptions);
+    // console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
             console.log(error);
         res.end("error");
      }else{
-            console.log("Message sent: " + response.message);
+            console.log("Message sent: " + req.body);
         res.end("sent");
          }
 });
