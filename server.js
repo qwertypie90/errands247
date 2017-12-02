@@ -1,7 +1,7 @@
 var express=require('express');
 var nodemailer = require("nodemailer");
 var bodyParser = require('body-parser');
-var app=express();
+var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true}));
 /*
