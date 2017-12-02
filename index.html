@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <meta charset="utf-8">
@@ -99,6 +98,7 @@
 // MAIL STUFF
     var from,to,subject,text,store_location, order, name, dropOff;
     $("#send_email").click(function(){ 
+      event.preventDefault()
     store_location=$("#store_location").val(); 
     order=$("#order").val(); 
     name=$("#name").val(); 
@@ -114,7 +114,11 @@
           data: data,
           success: function(data) {
             console.log('mail response:', data);
-          }
+          
+          if(data=="sent")
+        {
+            $("#main").empty().html("Email is been sent. " +name+" Your order is on the way!");
+        }}
         })
 //         $.get("http://localhost:3000/send",{to:to,subject:subject,location:location,order:order,name:name,dropOff:dropOff},function(data){
 //         if(data=="sent")
