@@ -23,6 +23,9 @@ var smtpTransport = nodemailer.createTransport({
 app.get('/',function(req,res){
     res.sendfile('index.html');
 });
+app.use(express.static('asset'))
+
+
 app.post('/send',function(req,res){
     console.log('request::', req.body);
     var mailOptions={
@@ -36,7 +39,7 @@ app.post('/send',function(req,res){
             console.log(error);
         res.end("error");
      }else{
-            console.log("Message sent: " + req.body);
+            console.log("Message sent: " + JSON.stringify(response, null, 2));
         res.end("sent");
          }
 });
