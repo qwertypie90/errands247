@@ -21,7 +21,7 @@ var smtpTransport = nodemailer.createTransport({
 /*------------------Routing Started ------------------------*/
 
 app.get('/',function(req,res){
-    res.sendfile('index.html');
+    res.sendfile('test.html');
 });
 app.use(express.static('asset'))
 
@@ -43,6 +43,7 @@ app.post('/send',function(req,res){
         res.end("sent");
          }
 });
+    console.log("Order Pressed")
 });
 
 /*--------------------Routing Over----------------------------*/
