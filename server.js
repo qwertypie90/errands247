@@ -9,14 +9,38 @@ const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
+
 const port = process.env.PORT || 3000;
 
 // set view engine
 app.set('view engine', 'ejs');
 
+// set up session cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}));
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// connect to mongodb
+mongoose.connect(keys.mongodb.dbURI, () => {
+    console.log('connected to mongodb');
+});
+
+// set up routes
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
+
+app.use(express.static('asset'))
+app.use(express.static('views'))
+
+
 //create home route
 app.get('/', function(req, res) {
-    res.sendfile('home');
+    res.render('index.html', { user: req.user });
 });
 
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -36,10 +60,10 @@ var smtpTransport = nodemailer.createTransport({
 
 /*------------------Routing Started ------------------------*/
 
-app.get('/',function(req,res){
-    res.sendfile('test.html');
-});
-app.use(express.static('asset'))
+// app.get('/',function(req,res){
+//     res.sendfile('test.html');
+// });
+
 
 
 app.post('/send',function(req,res){
