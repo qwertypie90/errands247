@@ -1,7 +1,23 @@
-var express=require('express');
-var nodemailer = require("nodemailer");
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const nodemailer = require("nodemailer");
+const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
+const passportSetup = require('./config/passport-setup');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+const app = express();
+const port = process.env.PORT || 3000;
+
+// set view engine
+app.set('view engine', 'ejs');
+
+//create home route
+app.get('/', function(req, res) {
+    res.sendfile('home');
+});
 
 app.use(bodyParser.urlencoded({ extended: true}));
 /*
@@ -48,6 +64,5 @@ app.post('/send',function(req,res){
 
 /*--------------------Routing Over----------------------------*/
 
-app.listen(3000,function(){
-    console.log("Express Started on Port 3000");
-});
+app.listen(port);
+console.log("Express started on port " + port);
