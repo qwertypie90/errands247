@@ -58,14 +58,6 @@ var smtpTransport = nodemailer.createTransport({
 });
 /*------------------SMTP Over-----------------------------*/
 
-/*------------------Routing Started ------------------------*/
-
-app.get('/',function(req,res){
-    res.sendfile('test.html');
-});
-
-
-
 app.post('/send',function(req,res){
     console.log('request::', req.body);
     var mailOptions={
