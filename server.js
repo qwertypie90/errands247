@@ -60,9 +60,9 @@ var smtpTransport = nodemailer.createTransport({
 
 /*------------------Routing Started ------------------------*/
 
-// app.get('/',function(req,res){
-//     res.sendfile('test.html');
-// });
+app.get('/',function(req,res){
+    res.sendfile('test.html');
+});
 
 
 
