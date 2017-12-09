@@ -5,11 +5,11 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
+const orderRoutes = require('./routes/order-routes')
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
-
 const port = process.env.PORT || 3000;
 
 // set view engine
@@ -32,6 +32,7 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 
 // set up routes
 app.use('/auth', authRoutes);
+app.use('/order', orderRoutes);
 app.use('/profile', profileRoutes);
 
 app.use(express.static('asset'))
