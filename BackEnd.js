@@ -1,7 +1,7 @@
 var firebase = require('firebase');
 var mysql = require('mysql');
 
-//connecting to the database
+//connecting to MySql database
 
 
 var con = mysql.createConnection({
@@ -12,7 +12,7 @@ var con = mysql.createConnection({
 });
 
 
-
+//  Firebase initializeApp 
 var config = {
   apiKey: "AIzaSyA-Pu9Kk5mokeAmI2WiSovUSbPZtktVFqE",
   authDomain: "errands-247.firebaseapp.com",
@@ -40,8 +40,7 @@ firebase.database().ref().on("value", function (snapshot) {
       console.log(customerAddress);
 
 
-      con.connect(function (err) {
-        if (err) throw err;
+     
         console.log("Connected!");
         var sql = "INSERT INTO Orders (Customer_Address, Customer_Name, Customer_PhoneNumber, Pickup_Location) VALUES (?, ?,?,?)"
 
@@ -51,4 +50,3 @@ firebase.database().ref().on("value", function (snapshot) {
         });
 
       })
-    })
