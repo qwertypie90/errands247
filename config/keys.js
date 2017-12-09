@@ -4,7 +4,7 @@ module.exports = {
             clientSecret: '_HS0IxWlFmyg8tfQFJiUx7YO'
         },
         mongodb: {
-            dbURI: 'mongodb://iamshaunjp:test@ds151024.mlab.com:51024/oauth-test'
+            dbURI: 'mongodb://errands247_db:lala1919@ds135486.mlab.com:35486/errands247'
         },
         session: {
             cookieKey: 'groupiris'
