@@ -40,7 +40,7 @@ app.use(express.static('views'))
 
 //create home route
 app.get('/', function(req, res) {
-    res.render('index.html', { user: req.user });
+    res.render('test.html', { user: req.user });
 });
 
 app.use(bodyParser.urlencoded({ extended: true}));
