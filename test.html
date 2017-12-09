@@ -4,19 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Errands</title>
-    <!-- Firebase/Moment References -->
-    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <!-- Bootstrap/jQuery -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Logic JS -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQJvBc8Y5r-POJDheEtXVm7Q25MEzE8rY&libraries=geometry,places&callback=initAutocomplete" async defer></script>
     <script src="/js/logic.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/offcanvas.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <body>
+    <div class="header">
+        <nav class="navbar navbar-toggleable-md fixed-top">
+            <div class="errands-logo" data-margin-top="30px" data-marginbottom="30px" data-margin-left="0px" data-margin-right="0px">
+                <a class="logo" href="#">
+                <img src="/images/logo.png" width="160" height="43" alt="Errands 24/7">
+            </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="col-md-9">
+                    <ul class="navbar-nav">
+                        <li class="na9v-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="navbar-nav">
+                        <div id='current-user'></div>
+                        <div class="btn-group">
+                            <button id="sign-in" class="btn btn-info navbar-btn"><a href="/auth/google">Login</a></button>
+                            <button id="sign-out" class="btn btn-info navbar-btn"><a href="/auth/logout">Log out</a></button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="container">
         <div class="jumbotron" style="background-color: purple; color: white">
             <h1 class="text-center">Errands</h1>
@@ -78,5 +105,14 @@
         </div>
     </div>
 </body>
+<!--jquery -->
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- javascript -->
+<script type="text/javascript" src="/js/offcanvas.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<!-- Logic JS -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQJvBc8Y5r-POJDheEtXVm7Q25MEzE8rY&libraries=geometry,places&callback=initAutocomplete" async defer></script>
 
 </html>
