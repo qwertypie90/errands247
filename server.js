@@ -6,13 +6,14 @@ const passport = require('passport');
 const authRoutes = require('./routes/auth-routes');
 const db = require("./models");
 const profileRoutes = require('./routes/profile-routes');
+const orderRoutes = require('./routes/order-routes')
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // set view engine
 app.set('view engine', 'ejs');
@@ -34,6 +35,7 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 
 // set up routes
 app.use('/auth', authRoutes);
+app.use('/order', orderRoutes);
 app.use('/profile', profileRoutes);
 
 app.use(express.static('asset'))
@@ -42,7 +44,7 @@ app.use(express.static('views'))
 
 //create home route
 app.get('/', function(req, res) {
-    res.render('test.html', { user: req.user });
+    res.render('index.html', { user: req.user });
 });
 
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -59,14 +61,6 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 /*------------------SMTP Over-----------------------------*/
-
-/*------------------Routing Started ------------------------*/
-
-app.get('/',function(req,res){
-    res.sendfile('test.html');
-});
-
-
 
 app.post('/send',function(req,res){
     console.log('request::', req.body);
