@@ -9,7 +9,7 @@ const userSchema = new Schema({
     googleId: String,
     thumbnail: String
 });
-
+    
 var User = mongoose.model('User', userSchema);
 
 var test = new User({

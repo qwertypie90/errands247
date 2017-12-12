@@ -21,14 +21,21 @@ passport.use(
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
         //check if user already exists in our own db
-        User.findOne({googleId: profile.id}).then((currentUser) => {
+        User.findOne({ googleId: profile.id }).then((currentUser) => {
             console.log("Connecting correctly to Mongo");
-            if(currentUser){
+            if (currentUser) {
 
                 // already have this user
                 console.log('user is: ');
                 console.log(currentUser);
                 done(null, currentUser);
+
+                // function setCookie(cname, cvalue, exdays) {
+                //     var d = new Date();
+                //     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                //     var expires = "expires=" + d.toUTCString();
+                //     document.cookie = driverName + "=" + cvalue + ";" + expires + ";path=/";
+                // }
             } else {
                 // if not, create user in our db
                 new User({
