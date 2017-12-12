@@ -68,6 +68,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
     var allItems = childSnapshot.val().items;
     var customerName = childSnapshot.val().name;
     var dropOffAddy = childSnapshot.val().dropOffAddress;
+    // var driver = currentUser.username;
+    // console.log(currentUser)
 
     var tempRow = $('<tr>')
     var tableJunk = "<td>" + pickUpAddy + "</td><td>" + allItems + "</td><td>" +
@@ -87,6 +89,11 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
             if (tempRow.status == 1) {
                 console.log("red")
                 $(tempRow.children()[4].children[0]).css({ 'background': 'red' })
+                getLocation()
+                initCoords()
+                geoSuccess()
+                geoError()
+
             }
         if (tempRow.status == 2) {
             console.log("purple")
