@@ -32,60 +32,30 @@ app.use(passport.session());
 mongoose.connect(keys.mongodb.dbURI, () => {
     console.log('connected to mongodb');
 });
+// all users should be saved in mysql not mongoose DB
 
-// set up routes
+app.use(express.static("public"));
+
+// set up all routes
 app.use('/auth', authRoutes);
 app.use('/order', orderRoutes);
 app.use('/profile', profileRoutes);
+
+require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
 app.use(express.static('asset'))
 app.use(express.static('views'))
 
 
 //create home route
-app.get('/', function(req, res) {
-    res.render('index.html', { user: req.user });
-});
 
-app.use(bodyParser.urlencoded({ extended: true}));
-/*
-    Here we are configuring our SMTP Server details.
-    STMP is mail server which is responsible for sending and recieving email.
-*/
-var smtpTransport = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    auth: {
-        user: "errands24server@gmail.com",
-        pass: "lala1919"
-    }
-});
-/*------------------SMTP Over-----------------------------*/
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.post('/send',function(req,res){
-    console.log('request::', req.body);
-    var mailOptions={
-        to : req.body.to,
-        subject : req.body.subject,
-        text : req.body.text
-    }
-    // console.log(mailOptions);
-    smtpTransport.sendMail(mailOptions, function(error, response){
-     if(error){
-            console.log(error);
-        res.end("error");
-     }else{
-            console.log("Message sent: " + JSON.stringify(response, null, 2));
-        res.end("sent");
-         }
-});
-    console.log("Order Pressed")
-});
-
-/*--------------------Routing Over----------------------------*/
-
-//app.listen(port);
-
+// Sequelize Stuff
 
 db.sequelize.sync().then(function() {
     app.listen(port, function() {
@@ -109,8 +79,15 @@ var config = {
   
   
  // on database change event
+
+
   firebase.database().ref().on("value", function (snapshot) {
-  
+  // grab f irst item in database - donttt do a for loop
+  // data[0]
+  // then dB.order
+  // then delete that item from database
+  // also add status and driver
+
         //loop throgh the database and grab the informaton needed
         for (var email in snapshot.val().project["errands-247"].database["errands-247"].data) {
           var customerAddress = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_address_text
@@ -123,7 +100,7 @@ var config = {
         console.log(customerPhone);
         console.log(customerAddress);
   
-  
+
        
          db.Order.create({
             Customer_Address: customerAddress,
@@ -133,5 +110,4 @@ var config = {
 
 
           })
-  
         })
