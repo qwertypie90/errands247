@@ -19,4 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   
- 
+ // in my routes put request
+ // search for whatever id order clicking
+ // take that date and match with userId
+ // rewrite that into the datebase
