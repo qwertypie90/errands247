@@ -12,8 +12,8 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
+var port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3000;
 
 // set view engine
 app.set('view engine', 'ejs');
