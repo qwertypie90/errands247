@@ -1,3 +1,4 @@
+var lol = 
 $(document).ready(function() {
 
 
@@ -53,6 +54,9 @@ $(document).ready(function() {
             statuses[i] = 0
             // tempRow.UNIQUE FIREBASE IDENTIFIER
         }
+
+
+
 
         //On-click event for each button
         $(".buttons").on('click', function() { //do something})

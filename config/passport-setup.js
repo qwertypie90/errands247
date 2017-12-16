@@ -13,6 +13,7 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+
 passport.use(
     new GoogleStrategy({
         // options for google strategy
@@ -24,18 +25,21 @@ passport.use(
         User.findOne({ googleId: profile.id }).then((currentUser) => {
             console.log("Connecting correctly to Mongo");
             if (currentUser) {
-
                 // already have this user
                 console.log('user is: ');
-                console.log(currentUser);
+                console.log(currentUser.username);
                 done(null, currentUser);
+                
+// function setCookie(cname, cvalue, exdays) {
+//     var d = new Date();
+//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+//     var expires = "expires=" + d.toUTCString();
+//     cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+//     console.log(cookie)
+// }
 
-                // function setCookie(cname, cvalue, exdays) {
-                //     var d = new Date();
-                //     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                //     var expires = "expires=" + d.toUTCString();
-                //     document.cookie = driverName + "=" + cvalue + ";" + expires + ";path=/";
-                // }
+// setCookie(1,currentUser.username,7)
+
             } else {
                 // if not, create user in our db
                 new User({
@@ -50,3 +54,5 @@ passport.use(
         });
     })
 );
+
+
