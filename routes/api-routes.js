@@ -8,9 +8,10 @@
 // Requiring our Todo model
 var db = require("../models");
 
+
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function(app, mongoose) {
 
   // GET route for getting all of the posts
   app.get("/api/orders/", function(req, res) {
@@ -20,5 +21,17 @@ module.exports = function(app) {
     });
   });
 
+	// PUT route for updating posts
+  app.put("/api/orders/", function(req, res) {
+    db.Order.update(
+      req.username,
+      {
+        where: {
+          id: req.username.id
+        }
+      }).then(function(dbOrder) {
+        res.json(dbOrder);
+      });
+  });
 }
 

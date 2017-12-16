@@ -24,6 +24,7 @@ $(document).ready(function() {
     }
 
     getOrders();
+    driver();
 
 // Handling the building/display of rows
 
@@ -35,7 +36,8 @@ $(document).ready(function() {
             var customerName = orders[i].Customer_Name
             var phone = orders[i].Customer_PhoneNumber
             var dropOffAddy = orders[i].Customer_Address
-            var driverID = "Suha Add It Here"
+            var driverID = ""
+            // var driverID = orders[i].username
             // var driver = currentUser.username;
             // console.log(currentUser)
 
