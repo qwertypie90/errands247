@@ -12,8 +12,16 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('errandsLive', 'root', '', {
+  host: "127.0.0.1",
+  dialect: "mysql",
+  port: 3306
+})
 
-const port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
+
+
 
 // set view engine
 app.set('view engine', 'ejs');
@@ -53,13 +61,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Sequelize Stuff
-
-db.sequelize.sync().then(function() {
-    app.listen(port, function() {
-        console.log("App listening on PORT " + port);
-    });
-});
 
 console.log("Express started on port " + port);
 
@@ -75,11 +76,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
-    // db.sequelize.sync().then(function() {
-    //     app.listen(port, function() {
-    //         console.log("App listening on PORT " + port);
-    //     });
-    // });
+    db.sequelize.sync().then(function() {
+        app.listen(port, function() {
+            console.log("App listening on PORT " + port);
+        });
+    });
 
 // on child added
 firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
