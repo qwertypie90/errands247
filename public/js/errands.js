@@ -20,87 +20,78 @@ $(document).ready(function() {
             }
         });
     }
-
-
-
+    
     getOrders();
 
+    var orderId;
+    var pickUpAddy;
+    var customerName;
+    var phone;
+    var dropOffAddy;
+
     function initializeRows(orders) {
+        var statuses = [];
         for (var i = 0; i < orders.length; i++) {
-    var orderId = orders[i].id
-    var pickUpAddy = orders[i].Pickup_Location;
-    var customerName = orders[i].Customer_Name
-    var phone = orders[i].Customer_PhoneNumber
-    var dropOffAddy = orders[i].Customer_Address
-    var driverID = "Suha Add It Here"
-    // var driver = currentUser.username;
-    // console.log(currentUser)
+            orderId = orders[i].id
+            pickUpAddy = orders[i].Pickup_Location;
+            customerName = orders[i].Customer_Name
+            phone = orders[i].Customer_PhoneNumber
+            dropOffAddy = orders[i].Customer_Address
+            driverID = "Suha Add It Here"
+            // var driver = currentUser.username;
+            // console.log(currentUser)
 
-    var tempRow = $('<tr>')
-    var tableJunk = "<td>" + orderId + "</td><td>" + pickUpAddy + "</td><td>" +
-        customerName + "</td><td>" + phone + "</td><td>" + dropOffAddy + "</td><td><input type='button'value='status'id ='status'/></td><td>" + driverID + "</td>";
+            var tempRow = $('<tr>')
+            var tableJunk = "<td>" + orderId + "</td><td>" + pickUpAddy + "</td><td>" +
+                customerName + "</td><td>" + phone + "</td><td>" + dropOffAddy + "</td><td><input type='button'value='status' class='buttons' id='" + i + "'/></td><td>" + driverID + "</td>";
 
-    tempRow.append(tableJunk)
+            tempRow.append(tableJunk)
 
-    $("#time-table > tbody").append(tempRow)
-    tempRow.status = 0
-    // tempRow.UNIQUE FIREBASE IDENTIFIER
+            $("#time-table > tbody").append(tempRow)
 
-    // event listener for status button
-    tempRow.on('click', function() { //do something})
-        event.preventDefault();
-        // console.log("status updated")
-        tempRow.status++
-            if (tempRow.status == 1) {
-                // console.log("red")
-                $(tempRow.children()[4].children[0]).css({ 'background': 'red' })
-                initialize()
-                initCoords()
-                getLocation()
-                geoSuccess()
-                // geoError()
-            }
-        if (tempRow.status == 2) {
-            // console.log("purple")
-            $(tempRow.children()[4].children[0]).css({ 'background': 'purple' })
-            console.log("I am at the restaurant")
+            //Initial value for statuses per each button
+            statuses[i] = 0
+            // tempRow.UNIQUE FIREBASE IDENTIFIER
         }
-        if (tempRow.status == 3) {
-            // console.log("green")
-            $(tempRow.children()[4].children[0]).css({ 'background': 'green' })
-            console.log("start tracking")
-            initialize()
-            initCoords()
-            updateLocation()
-        }
-        if (tempRow.status == 4) {
-            // console.log("green")
-            $(tempRow.children()[4].children[0]).css({ 'background': 'Yellow' })
-            console.log("at the dropoff")
 
-        }
-        if (tempRow.status == 5) {
-            // console.log("green")
-            $(tempRow.children()[4].children[0]).css({ 'background': 'MediumVioletRed ' })
-            console.log("delivery completed")
-
-        }
-          console.log(orders[i])
-            // console.log(orders[i]).push(createNewRow(orders[i]));
+        //Attaching click event only to buttons
+        $(".buttons").on('click', function() { //do something})
+            event.preventDefault();
+            var id = $(this).attr('id')
+            statuses[id]++
+                // console.log('Temp row checking: ' + statuses[id])
+                switch (statuses[id]) {
+                    case 1:
+                        console.log("red")
+                        $(this).css({ 'background': 'red' })
+                        initialize()
+                        initCoords()
+                        getLocation()
+                        geoSuccess()
+                        // geoError()
+                        break;
+                    case 2:
+                        console.log("purple")
+                        $(this).css({ 'background': 'purple' })
+                        console.log("I am at the restaurant")
+                        break;
+                    case 3:
+                        // console.log("green")
+                        $(this).css({ 'background': 'green' })
+                        console.log("start tracking")
+                        break;
+                    case 4:
+                        // console.log("green")
+                        $(this).css({ 'background': 'Yellow' })
+                        console.log("at the dropoff")
+                        break;
+                    case 5:
+                        // console.log("green")
+                        $(this).css({ 'background': 'MediumVioletRed ' })
+                        console.log("delivery completed")
+                        break;
+                }
         })
-        // orderContainer.append(ordersToAdd);
-    
-}}})
-
-
-// frjnjrg
-  // 3. Create Firebase event for adding order to the database and a row in the html when a user adds an entry
-// database.ref().on("child_added", function(childSnapshot, prevChildKey) {
-
-//     // console.log(childSnapshot.val());
-
-//     // Store everything into a variable.
-
-//         // console.log(tempRow.status)
-//     });
-
+    }
+    // END __________*
+})
