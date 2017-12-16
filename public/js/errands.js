@@ -1,10 +1,12 @@
 $(document).ready(function() {
+
+
     /* global moment */
     // blogContainer holds all of our posts
     var orderContainer = $("#time-table > tbody");
     var orders;
 
-    // This function grabs posts from the database and updates the view
+    // This function grabs posts from the api route/sql DB and updates the view
     function getOrders(category) {
         var categoryString = category || "";
         if (categoryString) {
@@ -20,28 +22,24 @@ $(document).ready(function() {
             }
         });
     }
-    
+
     getOrders();
 
-    var orderId;
-    var pickUpAddy;
-    var customerName;
-    var phone;
-    var dropOffAddy;
+// Handling the building/display of rows
 
     function initializeRows(orders) {
         var statuses = [];
         for (var i = 0; i < orders.length; i++) {
-            orderId = orders[i].id
-            pickUpAddy = orders[i].Pickup_Location;
-            customerName = orders[i].Customer_Name
-            phone = orders[i].Customer_PhoneNumber
-            dropOffAddy = orders[i].Customer_Address
-            driverID = "Suha Add It Here"
+            var orderId = orders[i].id
+            var pickUpAddy = orders[i].Pickup_Location;
+            var customerName = orders[i].Customer_Name
+            var phone = orders[i].Customer_PhoneNumber
+            var dropOffAddy = orders[i].Customer_Address
+            var driverID = "Suha Add It Here"
             // var driver = currentUser.username;
             // console.log(currentUser)
 
-            var tempRow = $('<tr>')
+            var tempRow = $('<tr class = "xyz">')
             var tableJunk = "<td>" + orderId + "</td><td>" + pickUpAddy + "</td><td>" +
                 customerName + "</td><td>" + phone + "</td><td>" + dropOffAddy + "</td><td><input type='button'value='status' class='buttons' id='" + i + "'/></td><td>" + driverID + "</td>";
 
@@ -54,7 +52,7 @@ $(document).ready(function() {
             // tempRow.UNIQUE FIREBASE IDENTIFIER
         }
 
-        //Attaching click event only to buttons
+        //On-click event for each button
         $(".buttons").on('click', function() { //do something})
             event.preventDefault();
             var id = $(this).attr('id')
@@ -62,33 +60,28 @@ $(document).ready(function() {
                 // console.log('Temp row checking: ' + statuses[id])
                 switch (statuses[id]) {
                     case 1:
-                        console.log("red")
-                        $(this).css({ 'background': 'red' })
+                        $(this).css({ 'background': 'green' })
                         initialize()
                         initCoords()
                         getLocation()
                         geoSuccess()
-                        // geoError()
                         break;
                     case 2:
-                        console.log("purple")
-                        $(this).css({ 'background': 'purple' })
-                        console.log("I am at the restaurant")
+                        $(this).css({ 'background': '#90EE90' })
+                        // console.log("I am at the restaurant")
                         break;
                     case 3:
-                        // console.log("green")
-                        $(this).css({ 'background': 'green' })
-                        console.log("start tracking")
+                        $(this).css({ 'background': 'Yellow' })
+                        // console.log("start tracking")
                         break;
                     case 4:
-                        // console.log("green")
-                        $(this).css({ 'background': 'Yellow' })
-                        console.log("at the dropoff")
+                        $(this).css({ 'background': 'Purple' })
+                        // console.log("at the dropoff")
                         break;
                     case 5:
-                        // console.log("green")
-                        $(this).css({ 'background': 'MediumVioletRed ' })
-                        console.log("delivery completed")
+                        $(this).css({ 'background': 'Black' })
+                        $(this).parents('.xyz').css({ 'background': '#EC403D' })
+                        // console.log("delivery completed")
                         break;
                 }
         })

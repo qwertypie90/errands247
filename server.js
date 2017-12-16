@@ -48,8 +48,6 @@ app.use(express.static('asset'))
 app.use(express.static('views'))
 
 
-//create home route
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -78,14 +76,12 @@ var config = {
 firebase.initializeApp(config);
 
 
-// on database change event
-
-
+// on child added
 firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
 
-  var fireSnap = snapshot.val()["errands-247"].database["errands-247"].data
-  // console.log(fireSnap)
-  for (var email in fireSnap) {
+    var fireSnap = snapshot.val()["errands-247"].database["errands-247"].data
+    // console.log(fireSnap)
+    for (var email in fireSnap) {
         var customerAddress = fireSnap[email].customer_address_text
         var customerPhone = fireSnap[email].customer_phone_number_text
         var cusPickupLocation = fireSnap[email].pickup_location_text
@@ -100,33 +96,6 @@ firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
             Customer_Name: customerName,
             Pickup_Location: cusPickupLocation
         })
-}
-firebase.database().ref().remove()
+    }
+    firebase.database().ref().remove()
 })
-
-
-
-// firebase.database().ref().on("value", function(snapshot) {
-    // grab f irst item in database - donttt do a for loop
-    // data[0]
-    // then dB.order
-    // then delete that item from database
-    // also add status and driver
-// console.log(snapshot.val().project["errands-247"].database["errands-247"].data[0][email])
-    //loop throgh the database and grab the informaton needed
-    // for (var email in snapshot.val().project["errands-247"].database["errands-247"].data[0]) {
-
-        // var customerAddress = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_address_text
-        // var customerPhone = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_phone_number_text
-        // var cusPickupLocation = snapshot.val().project["errands-247"].database["errands-247"].data[email].pickup_location_text
-        // var customerName = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_name_text
-
-        // db.Order.create({
-        //     Customer_Address: customerAddress,
-        //     Customer_PhoneNumber: customerPhone,
-        //     Customer_Name: customerName,
-        //     Pickup_Location: cusPickupLocation
-        // })
-
-
-// })
