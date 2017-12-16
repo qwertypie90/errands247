@@ -12,8 +12,10 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
+var Sequelize = require('sequelize');
 var sequelize = new Sequelize('errandsLive', 'root', '', {
   host: "127.0.0.1",
+  dialect: "mysql",
   port: 3306
 })
 
