@@ -1,22 +1,3 @@
-
-const Schema = mongoose.Schema;
-
-mongoose.connect('mongodb://errands247_db:lala1919@ds135486.mlab.com:35486/errands247', { useMongoClient: true });
-mongoose.Promise = global.Promise;
-
-var User = mongoose.model('User', userSchema);
-
-
-function driver() {
-    if (User) {
-        console.log("USER WORKS" + User);
-    } else {
-        console.log("DOESNT WORK!!!!!!!!!!!!!")
-    }
-}
-
-driver();
-
 function initialize() {
     geocoder = new google.maps.Geocoder();
 }
