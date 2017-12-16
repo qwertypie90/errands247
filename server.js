@@ -59,14 +59,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 db.sequelize.sync().then(function() {
     app.listen(port, function() {
-      console.log("App listening on PORT " + port);
+        console.log("App listening on PORT " + port);
     });
-  });
+});
 
-  console.log("Express started on port " + port);
+console.log("Express started on port " + port);
 
 
-   //Firebase initializeApp 
+//Firebase initializeApp 
 var config = {
     apiKey: "AIzaSyA-Pu9Kk5mokeAmI2WiSovUSbPZtktVFqE",
     authDomain: "errands-247.firebaseapp.com",
@@ -74,40 +74,59 @@ var config = {
     projectId: "errands-247",
     storageBucket: "errands-247.appspot.com",
     messagingSenderId: "841619642457"
-  };
-  firebase.initializeApp(config);
-  
-  
- // on database change event
+};
+firebase.initializeApp(config);
 
 
-  firebase.database().ref().on("value", function (snapshot) {
-  // grab f irst item in database - donttt do a for loop
-  // data[0]
-  // then dB.order
-  // then delete that item from database
-  // also add status and driver
+// on database change event
 
-        //loop throgh the database and grab the informaton needed
-        for (var email in snapshot.val().project["errands-247"].database["errands-247"].data) {
-          var customerAddress = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_address_text
-          var customerPhone = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_phone_number_text
-          var cusPickupLocation = snapshot.val().project["errands-247"].database["errands-247"].data[email].pickup_location_text
-          var customerName = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_name_text
-        }
-        console.log(cusPickupLocation);
-        console.log(customerName);
-        console.log(customerPhone);
-        console.log(customerAddress);
-  
 
-       
-         db.Order.create({
+firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
+
+  var fireSnap = snapshot.val()["errands-247"].database["errands-247"].data
+  // console.log(fireSnap)
+  for (var email in fireSnap) {
+        var customerAddress = fireSnap[email].customer_address_text
+        var customerPhone = fireSnap[email].customer_phone_number_text
+        var cusPickupLocation = fireSnap[email].pickup_location_text
+        var customerName = fireSnap[email].customer_name_text
+
+        console.log(email)
+        console.log(snapshot.val()["errands-247"].database["errands-247"].data)
+
+        db.Order.create({
             Customer_Address: customerAddress,
             Customer_PhoneNumber: customerPhone,
             Customer_Name: customerName,
             Pickup_Location: cusPickupLocation
-
-
-          })
         })
+}
+firebase.database().ref().remove()
+})
+
+
+
+// firebase.database().ref().on("value", function(snapshot) {
+    // grab f irst item in database - donttt do a for loop
+    // data[0]
+    // then dB.order
+    // then delete that item from database
+    // also add status and driver
+// console.log(snapshot.val().project["errands-247"].database["errands-247"].data[0][email])
+    //loop throgh the database and grab the informaton needed
+    // for (var email in snapshot.val().project["errands-247"].database["errands-247"].data[0]) {
+
+        // var customerAddress = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_address_text
+        // var customerPhone = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_phone_number_text
+        // var cusPickupLocation = snapshot.val().project["errands-247"].database["errands-247"].data[email].pickup_location_text
+        // var customerName = snapshot.val().project["errands-247"].database["errands-247"].data[email].customer_name_text
+
+        // db.Order.create({
+        //     Customer_Address: customerAddress,
+        //     Customer_PhoneNumber: customerPhone,
+        //     Customer_Name: customerName,
+        //     Pickup_Location: cusPickupLocation
+        // })
+
+
+// })
