@@ -1,5 +1,3 @@
-
-
 function initialize() {
     geocoder = new google.maps.Geocoder();
 }
