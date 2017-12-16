@@ -1,4 +1,3 @@
-var lol = 
 $(document).ready(function() {
 
 
