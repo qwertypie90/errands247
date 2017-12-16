@@ -11,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     },
       Pickup_Location: {
       type: DataTypes.STRING
-    }
+    },
+      username: {
+        type: DataTypes.STRING
+      }
   }, {
     timestamps: false
   });

@@ -19,21 +19,19 @@ const userSchema = new Schema({
     
 var User = mongoose.model('User', userSchema);
 
-// var test = new User({
-// username : 'SUHA',
-// googleId : 'SUHA@GMAIL.COM',
-// thumbnail : '',
-// });
+var test = new User({
+username : 'SUHA',
+googleId : 'SUHA@GMAIL.COM',
+thumbnail : '',
+});
 
-// test.save(function (err) {
-// 	if (err) {
-// 		console.log(err);
-// 	} else {
-// 		console.log('it works');
-// 	}
-// });
-
-
+test.save(function (err) {
+	if (err) {
+		console.log(err);
+	} else {
+		console.log('it works');
+	}
+});
 
 module.exports = User;
 
