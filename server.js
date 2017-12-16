@@ -75,6 +75,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
+    // db.sequelize.sync().then(function() {
+    //     app.listen(port, function() {
+    //         console.log("App listening on PORT " + port);
+    //     });
+    // });
 
 // on child added
 firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
@@ -87,8 +92,9 @@ firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
         var cusPickupLocation = fireSnap[email].pickup_location_text
         var customerName = fireSnap[email].customer_name_text
 
-        console.log(email)
-        console.log(snapshot.val()["errands-247"].database["errands-247"].data)
+
+        // console.log(email)
+        // console.log(snapshot.val()["errands-247"].database["errands-247"].data)
 
         db.Order.create({
             Customer_Address: customerAddress,
@@ -97,5 +103,6 @@ firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
             Pickup_Location: cusPickupLocation
         })
     }
+
     firebase.database().ref().remove()
 })
