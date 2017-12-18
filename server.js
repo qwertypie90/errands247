@@ -12,8 +12,21 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  socketPath: '/var/run/mysqld/mysqld.sock'
+});
 
-const port = process.env.PORT || 3000;
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
+
+  console.log('connected as id ' + connection.threadId);
+});
+
+var port = process.env.PORT || 3000;
 
 // set view engine
 app.set('view engine', 'ejs');
@@ -74,6 +87,12 @@ var config = {
     messagingSenderId: "841619642457"
 };
 firebase.initializeApp(config);
+
+    //     db.sequelize.sync().then(function() {
+    //     app.listen(port, function() {
+    //         console.log("DB listening on PORT " + port);
+    //     });
+    // });
 
 // on child added
 firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
