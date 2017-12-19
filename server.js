@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
-var mysql      = require('mysql');
+// var mysql      = require('mysql');
 // var connection = mysql.createConnection({
 //   "socketPath": '/var/run/mysqld/mysqld.sock'
 // });
