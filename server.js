@@ -101,7 +101,6 @@ firebase.initializeApp(config);
 firebase.database().ref().on("child_added", function(snapshot, prevChildKey) {
 
 
-
     var fireSnap = snapshot.val()["errands-247"].database["errands-247"].data
     // console.log(fireSnap)
     for (var email in fireSnap) {
