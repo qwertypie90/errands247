@@ -12,19 +12,22 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
-// var mysql      = require('mysql');
-// var connection = mysql.createConnection({
-//   "socketPath": '/var/run/mysqld/mysqld.sock'
-// });
+var mysql      = require('mysql');
+var connection;
 
-// connection.connect(function(err) {
-//   if (err) {
-//     console.error('error connecting: ' + err.stack);
-//     return;
-//   }
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'errandsLive'
+    });
+};
 
-//   console.log('connected as id ' + connection.threadId);
-// });
+connection.connect()
+
 
 var port = process.env.PORT || 3000;
 
