@@ -10,7 +10,6 @@ function initCoords() {
     }
 }
 
-
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
@@ -51,26 +50,3 @@ function locationError() {
 function geoError() {
     alert("Geocoder failed.");
 }
-
-// function updateLocation(position) {
-//     var longitude = position.coords.longitude;
-//     var latitude = position.coords.latitude;
-//     $.ajax({
-//         url: "../../ajax/account/handlegeolocation",
-//         type: "post",
-//         dataType: "json",
-//         data: { "longitude": longitude, "latitude": latitude },
-//         success: function(response) {
-//             console.log(response.message);
-//         },
-//         error: function(xmlhttprequest, textstatus, message) {
-//             console.log(message);
-//         }
-//     }).then(function() {
-//         setTimeout(getLocation, 30);
-//     });
-// }
-
-// function errorHandler(error) {
-//     console.log('Geolocation error : code ' + error.code + ' - ' + error.message);
-// }

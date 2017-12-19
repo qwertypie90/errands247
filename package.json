@@ -25,6 +25,7 @@
     "firebase": "^4.8.0",
     "install": "^0.10.2",
     "mongoose": "^4.13.6",
+    "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
     "nodemailer": "^4.4.0",
     "nodemon": "^1.12.7",

@@ -29,16 +29,6 @@ passport.use(
                 console.log('user is: ');
                 console.log(currentUser.username);
                 done(null, currentUser);
-                
-// function setCookie(cname, cvalue, exdays) {
-//     var d = new Date();
-//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-//     var expires = "expires=" + d.toUTCString();
-//     cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-//     console.log(cookie)
-// }
-
-// setCookie(1,currentUser.username,7)
 
             } else {
                 // if not, create user in our db
