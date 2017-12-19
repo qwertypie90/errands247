@@ -13,18 +13,18 @@ const keys = require('./config/keys');
 const app = express();
 var firebase = require('firebase');
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  socketPath: '/var/run/mysqld/mysqld.sock'
-});
+// var connection = mysql.createConnection({
+//   "socketPath": '/var/run/mysqld/mysqld.sock'
+// });
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error('error connecting: ' + err.stack);
+//     return;
+//   }
 
-  console.log('connected as id ' + connection.threadId);
-});
+//   console.log('connected as id ' + connection.threadId);
+// });
 
 var port = process.env.PORT || 3000;
 
